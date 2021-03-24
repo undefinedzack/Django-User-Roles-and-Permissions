@@ -17,9 +17,8 @@
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!-- CSS -->
-{#	vendors/styles/core.css#}
 	<link rel="stylesheet" type="text/css" href="{% static 'admin_panel/vendors/styles/core.css'  %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'admin_panel/vendors/styles/icon-font.min.css' %}>
+	<link rel="stylesheet" type="text/css" href="{% static 'admin_panel/vendors/styles/icon-font.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'admin_panel/src/plugins/datatables/css/dataTables.bootstrap4.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'admin_panel/src/plugins/datatables/css/responsive.bootstrap4.min.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'admin_panel/vendors/styles/style.css' %}">
@@ -264,18 +263,18 @@
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
 					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
+						<a href="{% url 'App:home' key %}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
 						</a>
-						<ul class="submenu">
-							<li><a href="index.html">Dashboard style 1</a></li>
-							<li><a href="index2.html">Dashboard style 2</a></li>
-							<li><a href="index3.html">Dashboard style 3</a></li>
-						</ul>
+{#						<ul class="submenu">#}
+{#							<li><a href="index.html">Dashboard style 1</a></li>#}
+{#							<li><a href="index2.html">Dashboard style 2</a></li>#}
+{#							<li><a href="index3.html">Dashboard style 3</a></li>#}
+{#						</ul>#}
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-edit2"></span><span class="mtext">Forms</span>
+							<span class="micon dw dw-edit2"></span><span class="mtext">Add User</span>
 						</a>
 						<ul class="submenu">
 							<li><a href="form-basic.html">Form Basic</a></li>
@@ -457,7 +456,7 @@
 			<div class="card-box pd-20 height-100-p mb-30">
 				<div class="row align-items-center">
 					<div class="col-md-4">
-						<img src="vendors/images/banner-img.png" alt="">
+						<img src="{% static 'admin_panel/vendors/images/banner-img.png' %}" alt="">
 					</div>
 					<div class="col-md-8">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
