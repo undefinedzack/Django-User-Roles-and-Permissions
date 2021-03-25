@@ -5,10 +5,11 @@ from .forms import UserForm
 
 
 def home(request, user_id):
-    admin = Adminz.objects.all().filter(pk=user_id)
-    print(admin)
+
+    user = Userz.objects.all().filter(pk=user_id)
     context = {
         'key' : user_id,
+        'user': user[0],
     }
 
     return render(request, 'admin_panel/index.html', context)
@@ -20,18 +21,118 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        admins = Adminz.objects.all().filter(username=username, password=password)
-        if len(admins) > 0:
-            return redirect('App:home', user_id=admins[0].pk)
+        # try:
+        #     if request.POST['admin'] == 'on':
+        #         admins = Adminz.objects.all().filter(username=username, password=password)
+        #         if len(admins) > 0:
+        #             return redirect('App:home', user_id=admins[0].pk)
+        #         else:
+        #             print('somethings wrong!')
+        #
+        # except:
+        users = Userz.objects.all().filter(username=username, password=password)
+        if len(users) > 0:
+            return redirect('App:home', user_id=users[0].pk)
         else:
             print('somethings wrong!')
 
-    context = {}
-
-    return render(request, 'admin_panel/login.html', {})
+    return render(request, 'admin_panel/login.html')
 
 
-def addUser(request):
+def addUser(request, id):
+    user = Userz.objects.all().filter(pk=id)
     if request.method == 'POST':
         user = UserForm(request.POST)
-        
+
+        print(request.POST)
+        print(user)
+
+        if user.is_valid():
+            user.save()
+
+    form = UserForm()
+    context = {
+        'form' : form,
+        'user' : user[0],
+        'key' : id
+    }
+    return render(request, 'admin_panel/addUser.html', context)
+
+def viewUsers(request, id):
+    user = Userz.objects.all().filter(pk=id)
+    users = Userz.objects.all()
+
+    context = {
+        'users' : users,
+        'user' : user[0],
+        'key' : id
+    }
+
+    return render(request, 'admin_panel/allUsers.html', context)
+
+def deleteUsers(request, id):
+    users = Userz.objects.all()
+    user = Userz.objects.all().filter(pk=id)
+
+    context = {
+
+        'users': users,
+        'user' : user[0],
+        'key': id
+    }
+
+    return render(request, 'admin_panel/deleteUser.html', context)
+
+def deleteUserAction(request, id):
+    user = Userz.objects.all().filter(pk=id)
+
+    user.delete()
+
+    return redirect('/deleteUser')
+
+def editUsers(request, id):
+    users = Userz.objects.all()
+    users = [user for user in users if user.id != id]
+    user = Userz.objects.all().filter(pk=id)
+
+    context = {
+        'users': users,
+        'user' : user[0],
+        'key' : id
+    }
+
+    return render(request, 'admin_panel/editUser.html', context)
+
+def editUserPage(request, id):
+    user = Userz.objects.all().filter(pk=id)
+    print(user)
+
+    updateForm = UserForm(instance=user[0])
+
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=user[0])
+        print(form)
+        if form.is_valid():
+            form.save()
+
+            return redirect('App:Edit user', id=id)
+        else:
+            print('not workingggggggggggggggggggggggggggggggggg')
+
+
+    context = {
+        'form' : updateForm,
+        'user' : user[0],
+        'key': id,
+    }
+
+    return render(request, 'admin_panel/editUserPage.html', context)
+
+def viewStatistics(request, id):
+    user = Userz.objects.all().filter(pk=id)
+    context = {
+        'user': user[0],
+        'key': id
+    }
+
+    return render(request, 'admin_panel/viewStatistics.html', context)

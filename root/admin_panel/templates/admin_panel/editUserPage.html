@@ -109,6 +109,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
@@ -119,11 +120,11 @@
 				<div class="pd-20 card-box mb-30">
 					<div class="clearfix">
 						<div class="pull-left">
-							<h4 class="text-blue h4">User Form</h4>
+							<h4 class="text-blue h4">Edit User Form</h4>
 						</div>
 
 					</div>
-					<form action="{% url 'App:Add User' key %}" method="post">
+					<form action="{% url 'App:Edit user page' key %}" method="post">
                         {% csrf_token %}
 						<div class="form-group">
 							<label>Name</label>
@@ -132,6 +133,13 @@
                                 {{ form.name }}
 {#                            </div>#}
 
+						</div>
+                        <div class="form-group">
+							<label>Username</label>
+{#							<input name="age" class="form-control" value="20" type="number">#}
+{#                            <div class="form-control">#}
+                                {{ form.username }}
+{#                            </div>#}
 						</div>
 						<div class="form-group">
 							<label>Email</label>
@@ -222,7 +230,7 @@
                                         use code for form submit
                                         <input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
                                     -->
-                                    <button class="btn btn-primary btn-lg btn-block">Add User</button>
+                                    <button class="btn btn-primary btn-lg btn-block">Edit User</button>
                                 </div>
                             </div>
                         </div>

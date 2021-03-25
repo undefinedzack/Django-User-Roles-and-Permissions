@@ -41,11 +41,7 @@
 					<img src="vendors/images/deskapp-logo.svg" alt="">
 				</a>
 			</div>
-			<div class="login-menu">
-				<ul>
-					<li><a href="register.html">Register</a></li>
-				</ul>
-			</div>
+
 		</div>
 	</div>
 	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
@@ -57,26 +53,26 @@
 				<div class="col-md-6 col-lg-5">
 					<div class="login-box bg-white box-shadow border-radius-10">
 						<div class="login-title">
-							<h2 class="text-center text-primary">Login To DeskApp</h2>
+							<h2 class="text-center text-primary">Login To Adhney</h2>
 						</div>
 						<form action="{% url 'App:Login' %}" method="post">
                             {% csrf_token %}
-							<div class="select-role">
-								<div class="btn-group btn-group-toggle" data-toggle="buttons">
-									<label class="btn active">
-										<input name="admin" type="radio" name="options" id="admin">
-										<div class="icon"><img src="{% static 'admin_panel/vendors/images/briefcase.svg' %}" class="svg" alt=""></div>
-										<span>I'm</span>
-										Admin
-									</label>
-									<label class="btn">
-										<input name="user" type="radio" name="options" id="user">
-										<div class="icon"><img src="{% static 'admin_panel/vendors/images/person.svg' %}" class="svg" alt=""></div>
-										<span>I'm</span>
-										User
-									</label>
-								</div>
-							</div>
+{#							<div class="select-role">#}
+{#								<div class="btn-group btn-group-toggle" data-toggle="buttons">#}
+{#									<label class="btn active">#}
+{#										<input name="admin" type="radio" name="options" id="admin">#}
+{#										<div class="icon"><img src="{% static 'admin_panel/vendors/images/briefcase.svg' %}" class="svg" alt=""></div>#}
+{#										<span>I'm</span>#}
+{#										Admin#}
+{#									</label>#}
+{#									<label class="btn">#}
+{#										<input name="user" type="radio" name="options" id="user">#}
+{#										<div class="icon"><img src="{% static 'admin_panel/vendors/images/person.svg' %}" class="svg" alt=""></div>#}
+{#										<span>I'm</span>#}
+{#										User#}
+{#									</label>#}
+{#								</div>#}
+{#							</div>#}
 							<div class="input-group custom">
 								<input name="username" type="text" class="form-control form-control-lg" placeholder="Username">
 								<div class="input-group-append custom">

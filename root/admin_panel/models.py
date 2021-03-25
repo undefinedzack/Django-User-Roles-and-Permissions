@@ -17,6 +17,7 @@ class Adminz(models.Model):
 
 class Userz(models.Model):
     name = models.CharField(max_length=200)
+    username = models.CharField(max_length=300)
     mobile_no = models.IntegerField()
     email = models.CharField(max_length=500)
     password = models.CharField(max_length=200)
@@ -30,3 +31,6 @@ class Userz(models.Model):
     view_all_user = models.BooleanField(default=False)
     edit_user = models.BooleanField(default=False)
     view_statistics = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.name}'
