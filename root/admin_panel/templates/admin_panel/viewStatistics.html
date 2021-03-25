@@ -48,15 +48,13 @@
 	</div>
 
 	<div class="left-side-bar">
-		<div class="brand-logo">
-			<a href="index.html">
-				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
-			</a>
-			<div class="close-sidebar" data-toggle="left-sidebar-close">
-				<i class="ion-close-round"></i>
-			</div>
+		{% if user.is_admin %}
+        <div class="brand-logo">
+			<div class="card-box">
+                <h2 class="mb-10 text-center">Admin</h2>
+            </div>
 		</div>
+    {% endif %}
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">

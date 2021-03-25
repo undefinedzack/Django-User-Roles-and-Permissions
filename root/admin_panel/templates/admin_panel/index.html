@@ -48,6 +48,14 @@
 	</div>
 
 	<div class="left-side-bar">
+    {% if user.is_admin %}
+        <div class="brand-logo">
+			<div class="card-box">
+                <h2 class="mb-10 text-center">Admin</h2>
+            </div>
+		</div>
+    {% endif %}
+
 		<div class="brand-logo">
 			<a href="index.html">
 				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">

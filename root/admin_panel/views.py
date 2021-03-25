@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from .models import Adminz, Userz
+from .models import Userz
 from .forms import UserForm
 
 
@@ -21,15 +21,6 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
 
-        # try:
-        #     if request.POST['admin'] == 'on':
-        #         admins = Adminz.objects.all().filter(username=username, password=password)
-        #         if len(admins) > 0:
-        #             return redirect('App:home', user_id=admins[0].pk)
-        #         else:
-        #             print('somethings wrong!')
-        #
-        # except:
         users = Userz.objects.all().filter(username=username, password=password)
         if len(users) > 0:
             return redirect('App:home', user_id=users[0].pk)
@@ -38,6 +29,19 @@ def login(request):
 
     return render(request, 'admin_panel/login.html')
 
+# def AdminLogin(request):
+#     if request.method=='POST':
+#         username = request.POST['username']
+#         password = request.POST['password']
+#
+#         admins = Adminz.objects.all().filter(username=username, password=password)
+#         print(admins,'hi there')
+#         if len(admins)>0:
+#             return redirect('App:home', user_id=admins[0].pk)
+#         else:
+#             print('somethings wrong')
+#
+#     return render(request, 'admin_panel/AdminLogin.html')
 
 def addUser(request, id):
     user = Userz.objects.all().filter(pk=id)
@@ -49,6 +53,7 @@ def addUser(request, id):
 
         if user.is_valid():
             user.save()
+            return redirect('App:Add User', id=id)
 
     form = UserForm()
     context = {
@@ -72,6 +77,7 @@ def viewUsers(request, id):
 
 def deleteUsers(request, id):
     users = Userz.objects.all()
+    users = [user for user in users if user.id != id]
     user = Userz.objects.all().filter(pk=id)
 
     context = {
@@ -92,7 +98,7 @@ def deleteUserAction(request, id):
 
 def editUsers(request, id):
     users = Userz.objects.all()
-    users = [user for user in users if user.id != id]
+    # users = [user for user in users if user.id != id]
     user = Userz.objects.all().filter(pk=id)
 
     context = {
@@ -117,7 +123,7 @@ def editUserPage(request, id):
 
             return redirect('App:Edit user', id=id)
         else:
-            print('not workingggggggggggggggggggggggggggggggggg')
+            print('not working')
 
 
     context = {
