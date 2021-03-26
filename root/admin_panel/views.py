@@ -92,12 +92,12 @@ def deleteUsers(request, id):
     return render(request, 'admin_panel/deleteUser.html', context)
 
 
-def deleteUserAction(request, id):
+def deleteUserAction(request, id, return_id):
     user = Userz.objects.all().filter(pk=id)
 
     user.delete()
 
-    return redirect('/deleteUser')
+    return redirect('App:Delete Users', id=return_id )
 
 
 def editUsers(request, id):
@@ -133,6 +133,7 @@ def editUserPage(request, id, return_key):
 
     context = {
         'form': updateForm,
+        'user': owner[0],
         'user': owner[0],
         'key': id,
         'return_key': return_key
