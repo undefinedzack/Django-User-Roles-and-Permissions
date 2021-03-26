@@ -22,7 +22,7 @@
 
 `python3 manage.py runserver`
 
-- It's on!
+- It's on! Live at - localhost:8000 
 
 ## Results
 
