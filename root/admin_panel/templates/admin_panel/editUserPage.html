@@ -57,73 +57,77 @@
 <div class="left-side-bar">
     {% if user.is_admin %}
         <div class="brand-logo">
-			<div class="card-box">
+            <div class="card-box">
                 <h2 class="mb-10 text-center">Admin</h2>
             </div>
-		</div>
+        </div>
     {% endif %}
 
-		<div class="brand-logo">
-			<a href="index.html">
-				<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
-			</a>
-			<div class="close-sidebar" data-toggle="left-sidebar-close">
-				<i class="ion-close-round"></i>
-			</div>
-		</div>
-		<div class="menu-block customscroll">
-			<div class="sidebar-menu">
-				<ul id="accordion-menu">
+    <div class="brand-logo">
+        <a href="index.html">
+            <img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
+            <img src="vendors/images/deskapp-logo-white.svg" alt="" class="light-logo">
+        </a>
+        <div class="close-sidebar" data-toggle="left-sidebar-close">
+            <i class="ion-close-round"></i>
+        </div>
+    </div>
+    <div class="menu-block customscroll">
+        <div class="sidebar-menu">
+            <ul id="accordion-menu">
 
-					<li class="dropdown">
-						<a href="{% url 'App:home' key %}" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
-						</a>
-					</li>
+                <li class="dropdown">
+                    <a href="{% url 'App:home' key %}" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
+                    </a>
+                </li>
 
-                    {% if user.add_user or user.is_admin %}
-					<li class="dropdown">
-						<a href="{% url 'App:Add User' key %}" class="dropdown-toggle no-arrow">
-							<i class="micon fa fa-plus" aria-hidden="true"></i>Add User</span>
-						</a>
-					</li>
-                    {% endif %}
-
-                    {% if user.view_all_user or user.is_admin %}
+                {% if user.add_user or user.is_admin %}
                     <li class="dropdown">
-						<a href="{% url 'App:View Users' key %}" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-library"></span><span class="mtext">View all Users</span>
-						</a>
-					</li>
-                    {% endif %}
+                        <a href="{% url 'App:Add User' key %}" class="dropdown-toggle no-arrow">
+                            <i class="micon fa fa-plus" aria-hidden="true"></i>Add User</span>
+                        </a>
+                    </li>
+                {% endif %}
 
-                    {% if user.edit_user or user.is_admin %}
+                {% if user.view_all_user or user.is_admin %}
                     <li class="dropdown">
-						<a href="{% url 'App:Edit user' key%}" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-edit2"></span><span class="mtext">Edit Users</span>
-						</a>
-					</li>
-                    {% endif %}
-                    {% if user.delete_user or user.is_admin %}
-                    <li class="dropdown">
-						<a href="{% url 'App:Delete Users' key %}" class="dropdown-toggle no-arrow">
-							<i class="micon fa fa-remove" aria-hidden="true"></i>Delete Users</span>
-						</a>
-					</li>
-                    {% endif %}
-                    {% if user.view_statistics or user.is_admin %}
-                    <li class="dropdown">
-						<a href="{% url 'App:view stats' key %}" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-analytics-21"></span><span class="mtext">View Statistics</span>
-						</a>
-					</li>
-                    {% endif %}
+                        <a href="{% url 'App:View Users' key %}" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-library"></span><span class="mtext">View all Users</span>
+                        </a>
+                    </li>
+                {% endif %}
 
-				</ul>
-			</div>
-		</div>
-	</div>
+                {% if user.edit_user or user.is_admin %}
+                    <li class="dropdown">
+                        <a href="{% url 'App:Edit user' key %}" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-edit2"></span><span class="mtext">Edit Users</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if user.delete_user or user.is_admin %}
+                    <li class="dropdown">
+                        <a href="{% url 'App:Delete Users' key %}" class="dropdown-toggle no-arrow">
+                            <i class="micon fa fa-remove" aria-hidden="true"></i>Delete Users</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% if user.view_statistics or user.is_admin %}
+                    <li class="dropdown">
+                        <a href="{% url 'App:view stats' key %}" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-analytics-21"></span><span class="mtext">View Statistics</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </div>
+    <div class="d-flex justify-content-center">
+            <a href="{% url 'App:Login' %}" ><button class="btn btn-danger" id="reset-settings">Logout</button></a>
+        </div>
+    </div>
+
+</div>
 
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -138,77 +142,65 @@
                     </div>
 
                 </div>
-                <form action="{% url 'App:Edit user page' key return_key%}" method="post">
+                <form action="{% url 'App:Edit user page' key return_key %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <label>Name</label>
-                        {#							<input name="name" class="form-control" type="text" placeholder="Johnny Brown">#}
-                        {#                            <div class="form-control">#}
                         {{ form.name }}
-                        {#                            </div>#}
-
                     </div>
                     <div class="form-group">
                         <label>Username</label>
-                        {#							<input name="age" class="form-control" value="20" type="number">#}
-                        {#                            <div class="form-control">#}
                         {{ form.username }}
-                        {#                            </div>#}
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        {#							<input name="email" class="form-control" value="bootstrap@example.com" type="email">#}
-                        {#                            <div class="form-control">#}
                         {{ form.email }}
-                        {#                            </div>#}
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        {#							<input name="password" class="form-control" value="password" type="password">#}
-                        {#						    <div class="form-control">#}
                         {{ form.password }}
-                        {#                            </div>#}
                     </div>
                     <div class="form-group">
                         <label>Department Name</label>
-                        {#							<input name="department_name" class="form-control" value="CSE" type="text">#}
-                        {#                            <div class="form-control">#}
                         {{ form.department_name }}
-                        {#                            </div>#}
                     </div>
                     <div class="form-group">
                         <label>Telephone</label>
-                        {#							<input name="phone_number" class="form-control" value="1111111111" type="number">#}
-                        {#                            <div class="form-control">#}
                         {{ form.mobile_no }}
-                        {#                            </div>#}
                     </div>
                     <div class="form-group">
                         <label>Age</label>
-                        {#							<input name="age" class="form-control" value="20" type="number">#}
-                        {#                            <div class="form-control">#}
                         {{ form.age }}
-                        {#                            </div>#}
                     </div>
                     <div class="form-group">
                         <label>Address</label>
-                        {#							<textarea name="address" class="form-control"></textarea>#}
-                        {#                            <div class="form-control">#}
                         {{ form.address }}
-                        {#                            </div>#}
                     </div>
 
+{#                    {% if user.add_user or user.is_admin %}#}
+                        <br>Add User
+                        {{ form.add_user }}
+{#                    {% endif %}#}
 
-                    <br>Add User
-                    {{ form.add_user }}
-                    <br>Delete User
-                    {{ form.delete_user }}
-                    <br>Edit User
-                    {{ form.edit_user }}
-                    <br>View All User
-                    {{ form.view_all_user }}
-                    <br>View Statistics
-                    {{ form.view_statistics }}
+{#                    {% if user.delete_user or user.is_admin %}#}
+                        <br>Delete User
+                        {{ form.delete_user }}
+{#                    {% endif %}#}
+
+{#                    {% if user.edit_user or user.is_admin %}#}
+                        <br>Edit User
+                        {{ form.edit_user }}
+{#                    {% endif %}#}
+
+{#                    {% if user.view_all_user or user.is_admin %}#}
+                        <br>View All User
+                        {{ form.view_all_user }}
+{#                    {% endif %}#}
+
+{#                    {% if user.view_statistics or user.is_admin %}#}
+                        <br>View Statistics
+                        {{ form.view_statistics }}
+{#                    {% endif %}#}
 
                     {% if user.is_admin %}
                         <br>Admin Rights
