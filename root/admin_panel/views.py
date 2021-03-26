@@ -104,12 +104,12 @@ def editUsers(request, id):
     context = {
         'users': users,
         'user' : user[0],
-        'key' : id
+        'key' : id,
     }
 
     return render(request, 'admin_panel/editUser.html', context)
 
-def editUserPage(request, id):
+def editUserPage(request, id, return_key):
     user = Userz.objects.all().filter(pk=id)
     print(user)
 
@@ -121,7 +121,7 @@ def editUserPage(request, id):
         if form.is_valid():
             form.save()
 
-            return redirect('App:Edit user', id=id)
+            return redirect('App:Edit user', id=return_key)
         else:
             print('not working')
 
@@ -130,6 +130,7 @@ def editUserPage(request, id):
         'form' : updateForm,
         'user' : user[0],
         'key': id,
+        'return_key': return_key
     }
 
     return render(request, 'admin_panel/editUserPage.html', context)

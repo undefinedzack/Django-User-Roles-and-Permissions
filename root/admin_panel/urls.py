@@ -13,6 +13,6 @@ urlpatterns = [
     path('deleteUser/<int:id>', views.deleteUsers, name='Delete Users'),
     path('deleteUserAction/<int:id>', views.deleteUserAction, name='Delete it'),
     path('editUser/<int:id>', views.editUsers, name='Edit user'),
-    path('editUserPage/<int:id>', views.editUserPage, name='Edit user page'),
+    path('editUserPage/<int:id>/<int:return_key>', views.editUserPage, name='Edit user page'),
     path('viewStatistics/<int:id>', views.viewStatistics, name='view stats'),
 ]
