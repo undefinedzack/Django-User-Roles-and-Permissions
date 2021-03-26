@@ -1,7 +1,5 @@
 # A Django app - Admin/Users Permissions and Roles Management
 
----
-
 ### Installation
 
 ---
@@ -27,8 +25,6 @@
 - It's on!
 
 ## Results
-
----
 
 <img src="images/1.jpg" alt="" />
 <img src="images/2.jpg" alt="" />
