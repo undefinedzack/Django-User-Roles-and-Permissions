@@ -5,10 +5,9 @@ from .forms import UserForm
 
 
 def home(request, user_id):
-
     user = Userz.objects.all().filter(pk=user_id)
     context = {
-        'key' : user_id,
+        'key': user_id,
         'user': user[0],
     }
 
@@ -28,6 +27,7 @@ def login(request):
             print('somethings wrong!')
 
     return render(request, 'admin_panel/login.html')
+
 
 # def AdminLogin(request):
 #     if request.method=='POST':
@@ -57,23 +57,25 @@ def addUser(request, id):
 
     form = UserForm()
     context = {
-        'form' : form,
-        'user' : user[0],
-        'key' : id
+        'form': form,
+        'user': user[0],
+        'key': id
     }
     return render(request, 'admin_panel/addUser.html', context)
+
 
 def viewUsers(request, id):
     user = Userz.objects.all().filter(pk=id)
     users = Userz.objects.all()
 
     context = {
-        'users' : users,
-        'user' : user[0],
-        'key' : id
+        'users': users,
+        'user': user[0],
+        'key': id
     }
 
     return render(request, 'admin_panel/allUsers.html', context)
+
 
 def deleteUsers(request, id):
     users = Userz.objects.all()
@@ -83,11 +85,12 @@ def deleteUsers(request, id):
     context = {
 
         'users': users,
-        'user' : user[0],
+        'user': user[0],
         'key': id
     }
 
     return render(request, 'admin_panel/deleteUser.html', context)
+
 
 def deleteUserAction(request, id):
     user = Userz.objects.all().filter(pk=id)
@@ -96,6 +99,7 @@ def deleteUserAction(request, id):
 
     return redirect('/deleteUser')
 
+
 def editUsers(request, id):
     users = Userz.objects.all()
     # users = [user for user in users if user.id != id]
@@ -103,14 +107,16 @@ def editUsers(request, id):
 
     context = {
         'users': users,
-        'user' : user[0],
-        'key' : id,
+        'user': user[0],
+        'key': id,
     }
 
     return render(request, 'admin_panel/editUser.html', context)
 
+
 def editUserPage(request, id, return_key):
     user = Userz.objects.all().filter(pk=id)
+    owner = Userz.objects.all().filter(pk=return_key)
     print(user)
 
     updateForm = UserForm(instance=user[0])
@@ -125,15 +131,15 @@ def editUserPage(request, id, return_key):
         else:
             print('not working')
 
-
     context = {
-        'form' : updateForm,
-        'user' : user[0],
+        'form': updateForm,
+        'user': owner[0],
         'key': id,
         'return_key': return_key
     }
 
     return render(request, 'admin_panel/editUserPage.html', context)
+
 
 def viewStatistics(request, id):
     user = Userz.objects.all().filter(pk=id)

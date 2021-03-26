@@ -75,7 +75,7 @@
 						</a>
 					</li>
 
-                    {% if user.add_user %}
+                    {% if user.add_user or user.is_admin %}
 					<li class="dropdown">
 						<a href="{% url 'App:Add User' key %}" class="dropdown-toggle no-arrow">
 							<i class="micon fa fa-plus" aria-hidden="true"></i>Add User</span>
@@ -83,7 +83,7 @@
 					</li>
                     {% endif %}
 
-                    {% if user.view_all_user %}
+                    {% if user.view_all_user or user.is_admin %}
                     <li class="dropdown">
 						<a href="{% url 'App:View Users' key %}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-library"></span><span class="mtext">View all Users</span>
@@ -91,21 +91,21 @@
 					</li>
                     {% endif %}
 
-                    {% if user.edit_user %}
+                    {% if user.edit_user or user.is_admin %}
                     <li class="dropdown">
 						<a href="{% url 'App:Edit user' key%}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-edit2"></span><span class="mtext">Edit Users</span>
 						</a>
 					</li>
                     {% endif %}
-                    {% if user.delete_user %}
+                    {% if user.delete_user or user.is_admin %}
                     <li class="dropdown">
 						<a href="{% url 'App:Delete Users' key %}" class="dropdown-toggle no-arrow">
 							<i class="micon fa fa-remove" aria-hidden="true"></i>Delete Users</span>
 						</a>
 					</li>
                     {% endif %}
-                    {% if user.view_statistics %}
+                    {% if user.view_statistics or user.is_admin %}
                     <li class="dropdown">
 						<a href="{% url 'App:view stats' key %}" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-analytics-21"></span><span class="mtext">View Statistics</span>
